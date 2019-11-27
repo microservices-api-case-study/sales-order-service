@@ -12,5 +12,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public interface ItemService {
 
 	@GetMapping("/items/{itemname}")
-	public OrderLineItem getItemByName(@PathVariable("itemname") String itemName);
+	public Item getItemByName(@PathVariable("itemname") String itemName);
 }

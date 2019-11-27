@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,18 +24,19 @@ public class OrderLineItem {
 	@Column(name = "item_quantity")
 	private Long itemQty;
 
-	@Column(name = "order_id")
-	private Long orderId;
+	@ManyToOne
+	@JoinColumn(name = "order_id")
+	private SalesOrder salesOrder;
 
 	public OrderLineItem() {
 	}
 
-	public OrderLineItem(Long id, String itemName, Long itemQty, Long orderId) {
+	public OrderLineItem(Long id, String itemName, Long itemQty, SalesOrder salesOrder) {
 		super();
 		this.id = id;
 		this.itemName = itemName;
 		this.itemQty = itemQty;
-		this.orderId = orderId;
+		this.salesOrder = salesOrder;
 	}
 
 	public Long getId() {
@@ -60,12 +63,12 @@ public class OrderLineItem {
 		this.itemQty = itemQty;
 	}
 
-	public Long getOrderId() {
-		return orderId;
+	public SalesOrder getSalesOrder() {
+		return salesOrder;
 	}
 
-	public void setOrderId(Long orderId) {
-		this.orderId = orderId;
+	public void setSalesOrder(SalesOrder salesOrder) {
+		this.salesOrder = salesOrder;
 	}
 
 }

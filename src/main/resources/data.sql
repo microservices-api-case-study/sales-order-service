@@ -1,0 +1,2 @@
+insert into Customer_SOS(cust_id, cust_email, cust_first_name, cust_last_name) values (1, 'john@gmail.com', 'John', 'Smith');
+insert into Customer_SOS(cust_id, cust_email, cust_first_name, cust_last_name) values (2, 'jane@gmail.com', 'Jane', 'Doe');

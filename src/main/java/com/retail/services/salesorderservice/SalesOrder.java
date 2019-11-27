@@ -1,12 +1,16 @@
 package com.retail.services.salesorderservice;
 
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -28,18 +32,23 @@ public class SalesOrder {
 	private String orderDesc;
 
 	@Column(name = "total_price")
-	private Double totalPrice;
+	private BigDecimal totalPrice;
+
+	@OneToMany(mappedBy = "salesOrder", cascade = CascadeType.ALL)
+	private List<OrderLineItem> listOfOrderLineItems;
 
 	public SalesOrder() {
 	}
 
-	public SalesOrder(Long id, Date orderDate, Long custId, String orderDesc, Double totalPrice) {
+	public SalesOrder(Long id, Date orderDate, Long custId, String orderDesc, BigDecimal totalPrice,
+			List<OrderLineItem> listOfOrderLineItems) {
 		super();
 		this.id = id;
 		this.orderDate = orderDate;
 		this.custId = custId;
 		this.orderDesc = orderDesc;
 		this.totalPrice = totalPrice;
+		this.listOfOrderLineItems = listOfOrderLineItems;
 	}
 
 	public Long getId() {
@@ -74,12 +83,20 @@ public class SalesOrder {
 		this.orderDesc = orderDesc;
 	}
 
-	public Double getTotalPrice() {
+	public BigDecimal getTotalPrice() {
 		return totalPrice;
 	}
 
-	public void setTotalPrice(Double totalPrice) {
+	public void setTotalPrice(BigDecimal totalPrice) {
 		this.totalPrice = totalPrice;
+	}
+
+	public List<OrderLineItem> getListOfOrderLineItems() {
+		return listOfOrderLineItems;
+	}
+
+	public void setListOfOrderLineItems(List<OrderLineItem> listOfOrderLineItems) {
+		this.listOfOrderLineItems = listOfOrderLineItems;
 	}
 
 }

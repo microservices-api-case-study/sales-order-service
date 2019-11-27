@@ -18,11 +18,15 @@ public class EventSubscriber {
 	@Autowired
 	CustomerRepository customerRepository;
 
-	@RabbitListener(queues = "CustomerCreated")
+	@RabbitListener(queues="orderServiceQueue")
 	public void handleCustomerCreatedEvent(String message) throws IOException {
+		
 		Customer customerDetails = new ObjectMapper().readValue(message, Customer.class);
+		
 		log.info("Message received in Sales Order Service => "+ customerDetails.toString());
+		
 		customerRepository.save(customerDetails);
+		
 		log.info("Customer details saved to Table: Customer_SOS");
 	}
 }

@@ -1,0 +1,6 @@
+---
+applications:
+- name: sales-order-service
+  path: ./target/sales-order-service-1.0.jar
+  buildpacks:
+      - https://github.com/cloudfoundry/java-buildpack.git

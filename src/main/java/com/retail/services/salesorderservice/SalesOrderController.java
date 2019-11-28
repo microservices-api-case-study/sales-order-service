@@ -33,7 +33,7 @@ public class SalesOrderController {
 	public String createOrder(@RequestBody Order orderRequest) {
 
 		// Validating Customer by verifying the table "Customer_SOS" with "cust_id"
-		if (customerRepository.findById(orderRequest.getCustomerId()).isEmpty()) {
+		if (customerRepository.existsById(orderRequest.getCustomerId())) {
 			log.info("Invalid Customer.");
 			return ("'"+orderRequest.getCustomerId()+"'"
 					+ " is not a valid Customer Id. Please check the Customer Id and retry.");

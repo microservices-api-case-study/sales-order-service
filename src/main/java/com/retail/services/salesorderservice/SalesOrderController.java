@@ -57,7 +57,7 @@ public class SalesOrderController {
 	@HystrixCommand(fallbackMethod = "defaultItemValidity")
 	public Boolean isItemValid(String itemName) {
 		log.info("Checking if '"+itemName+"' is valid...");
-		itemService.getItemByName(itemName);
+		//throw new RuntimeException();
 		return (itemService.getItemByName(itemName) != null);
 	}
 

@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@FeignClient(name = "item-service")
-@RibbonClient(name = "item-service")
+import com.retail.services.salesorderservice.model.Item;
+
+@FeignClient(name = "${item-service-client.app-name}")
+@RibbonClient(name = "${item-service-client.app-name}")
 @RequestMapping("/service2")
 public interface ItemService {
 

@@ -1,4 +1,4 @@
-package com.retail.services.salesorderservice;
+package com.retail.services.salesorderservice.model;
 
 import java.util.Date;
 import java.util.Map;

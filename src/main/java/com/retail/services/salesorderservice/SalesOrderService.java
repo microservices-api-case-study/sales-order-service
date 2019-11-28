@@ -11,6 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.retail.services.salesorderservice.model.Order;
+import com.retail.services.salesorderservice.model.OrderLineItem;
+import com.retail.services.salesorderservice.model.SalesOrder;
+import com.retail.services.salesorderservice.repos.SalesOrderRepository;
 
 @Service
 public class SalesOrderService {
@@ -46,7 +50,8 @@ public class SalesOrderService {
 		salesOrder.setListOfOrderLineItems(listOfOrderLineItems);
 		salesOrderRepository.save(salesOrder);
 		log.info("Order Created.");
-		return "Successfully created the order# " + salesOrder.getId();
+		return "Successfully created the order# " + salesOrder.getId() + " with total cost of $"
+				+ salesOrder.getTotalPrice();
 	}
 
 	@HystrixCommand(fallbackMethod = "defaultItemPrice")

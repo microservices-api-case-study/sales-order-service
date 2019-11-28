@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "67bf7add-c834-4f93-a2b0-5d3cc2b93dd4",
+		"_postman_id": "eb6d9219-ac3f-447b-8cf1-98f6fe2a05fd",
 		"name": "Microservices",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -249,7 +249,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"orderDescription\": \"Newest Order\",\n    \"customerId\": 1,\n    \"itemsWithQtyMap\": {\n        \"Pen\": 1,\n        \"Book\": 2\n    }\n}"
+					"raw": "{\n    \"orderDescription\": \"Newest Order\",\n    \"orderDate\":\"2019-11-28\",\n    \"customerId\": 1,\n    \"itemsWithQtyMap\": {\n        \"Pen\": 1,\n        \"Book\": 2\n    }\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8000/service3/orders",
@@ -261,6 +261,37 @@
 					"path": [
 						"service3",
 						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sales-order-service || /refresh",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8000/actuator/refresh",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"actuator",
+						"refresh"
 					]
 				}
 			},

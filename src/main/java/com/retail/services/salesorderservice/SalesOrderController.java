@@ -1,6 +1,9 @@
 package com.retail.services.salesorderservice;
 
-import static com.retail.services.salesorderservice.util.Constants.*;
+import static com.retail.services.salesorderservice.util.Constants.MSG_INVALID_CUST_ID;
+import static com.retail.services.salesorderservice.util.Constants.MSG_INVALID_ITEM;
+import static com.retail.services.salesorderservice.util.Constants.MSG_ORDER_FAILED;
+import static com.retail.services.salesorderservice.util.Constants.SINGLE_QUOTE;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +36,12 @@ public class SalesOrderController {
 	@Autowired
 	OrderLineItemRepository orderLineItemRepository;
 
+	/**
+	 * Creates the order based on the given inputs
+	 * 
+	 * @param orderRequest
+	 * @return
+	 */
 	@PostMapping("/orders")
 	@HystrixCommand(fallbackMethod = "handlefailedOrder")
 	public String createOrder(@RequestBody Order orderRequest) {
@@ -53,18 +62,33 @@ public class SalesOrderController {
 		// Create sales order and return the order id
 		return salesOrderService.createOrder(orderRequest);
 	}
-
-	@HystrixCommand(fallbackMethod = "defaultItemValidity")
+	
+	/**
+	 * Returns true if the item is found in the Item table 
+	 * which is queried through item-service
+	 * 
+	 * @param itemName
+	 * @return Boolean
+	 */
 	public Boolean isItemValid(String itemName) {
-		log.info("Checking if '"+itemName+"' is valid...");
-		//throw new RuntimeException();
-		return (itemService.getItemByName(itemName) != null);
-	}
-
-	public Boolean defaultItemValidity(String itemName) {
-		log.info("Returning the default item validity as false.");
+		log.info("Checking if '" + itemName + "' is valid...");
+		try {
+			if (itemService.getItemByName(itemName) != null) {
+				log.info(itemName + " is valid.");
+				return Boolean.TRUE;
+			}
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			throw e;
+		}
 		return Boolean.FALSE;
 	}
+	
+	/**
+	 * This is a fallback method
+	 * @param orderRequest
+	 * @return String
+	 */
 
 	public String handlefailedOrder(Order orderRequest) {
 		return MSG_ORDER_FAILED;

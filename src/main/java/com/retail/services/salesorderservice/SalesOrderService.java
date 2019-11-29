@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.retail.services.salesorderservice.model.Order;
 import com.retail.services.salesorderservice.model.OrderLineItem;
 import com.retail.services.salesorderservice.model.SalesOrder;
@@ -54,13 +53,8 @@ public class SalesOrderService {
 				+ salesOrder.getTotalPrice();
 	}
 
-	@HystrixCommand(fallbackMethod = "defaultItemPrice")
 	public BigDecimal getItemPrice(String itemName) {
 		return itemService.getItemByName(itemName).getPrice();
-	}
-
-	public BigDecimal defaultItemPrice(String itemName) {
-		return BigDecimal.ZERO;
 	}
 
 }

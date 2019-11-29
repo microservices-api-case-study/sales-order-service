@@ -3,3 +3,16 @@ spring:
         name: sales-order-service
 server:
   port: 8000
+
+---
+
+spring:
+  profiles: junit
+  main:
+    banner-mode: "off"
+  cloud:
+    config:
+      enabled: false
+eureka:
+  client:
+    enabled: false

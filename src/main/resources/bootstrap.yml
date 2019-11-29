@@ -1,6 +1,6 @@
 spring:
     application:
-        name: sales-order-service
+        name: anand-sales-order-service
 server:
   port: 8000
 
@@ -17,7 +17,7 @@ eureka:
   client:
     enabled: false
 item-service-client:
-  app-name: "item-service"
+  app-name: "anand-item-service"
 rabbitmq:
   exchange-name: "eventExchange"
   queue-name: "orderServiceQueue"

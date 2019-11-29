@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "eb6d9219-ac3f-447b-8cf1-98f6fe2a05fd",
+		"_postman_id": "2beb6931-8d5d-4e7c-8fe7-a72409a530a1",
 		"name": "Microservices",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -297,5 +297,6 @@
 			},
 			"response": []
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }

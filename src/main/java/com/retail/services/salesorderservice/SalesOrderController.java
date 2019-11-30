@@ -5,6 +5,8 @@ import static com.retail.services.salesorderservice.util.Constants.MSG_INVALID_I
 import static com.retail.services.salesorderservice.util.Constants.MSG_ORDER_FAILED;
 import static com.retail.services.salesorderservice.util.Constants.SINGLE_QUOTE;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +52,7 @@ public class SalesOrderController {
 	 */
 	@PostMapping("/orders")
 	@HystrixCommand(fallbackMethod = "handlefailedOrder")
-	public String createOrder(@RequestBody Order orderRequest) {
+	public String createOrder(@Valid @RequestBody Order orderRequest) {
 		
 		log.info(message);
 

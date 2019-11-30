@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.retail.services.salesorderservice.model.Item;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 @FeignClient(name = "${item-service-client.app-name}")
 @RibbonClient(name = "${item-service-client.app-name}")
 @RequestMapping("/service2")
+@ApiIgnore
 public interface ItemService {
 
 	@GetMapping("/items/{itemname}")

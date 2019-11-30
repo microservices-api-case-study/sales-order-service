@@ -27,3 +27,6 @@ rabbitmq:
   exchange-name: "eventExchange"
   queue-name: "orderServiceQueue"
   routing-key: "customer.created"
+app:
+  custom:
+    message: ""

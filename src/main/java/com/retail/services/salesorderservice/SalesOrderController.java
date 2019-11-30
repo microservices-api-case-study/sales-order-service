@@ -8,6 +8,8 @@ import static com.retail.services.salesorderservice.util.Constants.SINGLE_QUOTE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,10 +22,14 @@ import com.retail.services.salesorderservice.repos.OrderLineItemRepository;
 
 @RestController
 @RequestMapping("/service3")
+@RefreshScope
 public class SalesOrderController {
 
 	private static final Logger log = LoggerFactory.getLogger(SalesOrderController.class);
 
+	@Value("${app.custom.message}")
+	String message;
+	
 	@Autowired
 	ItemService itemService;
 
@@ -45,6 +51,8 @@ public class SalesOrderController {
 	@PostMapping("/orders")
 	@HystrixCommand(fallbackMethod = "handlefailedOrder")
 	public String createOrder(@RequestBody Order orderRequest) {
+		
+		log.info(message);
 
 		// Validating Customer by verifying the table "Customer_SOS" with "cust_id"
 		if (!customerRepository.existsById(orderRequest.getCustomerId())) {

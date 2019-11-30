@@ -3,6 +3,11 @@ spring:
         name: anand-sales-order-service
 server:
   port: 8000
+  
+app:
+  security:
+    basic:
+      enabled: false
 
 ---
 

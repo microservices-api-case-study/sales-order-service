@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "2beb6931-8d5d-4e7c-8fe7-a72409a530a1",
-		"name": "Microservices",
+		"_postman_id": "2ca5055a-6fc5-4b4c-a89b-deff3d2cc1c0",
+		"name": "Microservices - PCF",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -25,12 +25,13 @@
 					"raw": "[]"
 				},
 				"url": {
-					"raw": "http://localhost:8100/service1/customers",
+					"raw": "http://anand-customer-service.cfapps.io/service1/customers",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"anand-customer-service",
+						"cfapps",
+						"io"
 					],
-					"port": "8100",
 					"path": [
 						"service1",
 						"customers"
@@ -56,12 +57,13 @@
 					"raw": "{\n    \"id\": 3,\n    \"email\": \"brad@gmail.com\",\n    \"firstName\": \"Brad\",\n    \"lastName\": \"Pitt\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8100/service1/customer",
+					"raw": "http://anand-customer-service.cfapps.io/service1/customer",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"anand-customer-service",
+						"cfapps",
+						"io"
 					],
-					"port": "8100",
 					"path": [
 						"service1",
 						"customer"
@@ -90,12 +92,13 @@
 					"raw": "[]"
 				},
 				"url": {
-					"raw": "http://localhost:8100/service1/fault",
+					"raw": "http://anand-customer-service.cfapps.io/service1/fault",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"anand-customer-service",
+						"cfapps",
+						"io"
 					],
-					"port": "8100",
 					"path": [
 						"service1",
 						"fault"
@@ -124,12 +127,13 @@
 					"raw": "[]"
 				},
 				"url": {
-					"raw": "http://localhost:8200/service2/items",
+					"raw": "http://anand-item-service.cfapps.io/service2/items",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"anand-item-service",
+						"cfapps",
+						"io"
 					],
-					"port": "8200",
 					"path": [
 						"service2",
 						"items"
@@ -158,12 +162,13 @@
 					"raw": "[]"
 				},
 				"url": {
-					"raw": "http://localhost:8200/service2/items/Pen",
+					"raw": "http://anand-item-service.cfapps.io/service2/items/Pen",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"anand-item-service",
+						"cfapps",
+						"io"
 					],
-					"port": "8200",
 					"path": [
 						"service2",
 						"items",
@@ -190,12 +195,13 @@
 					"raw": "{\n    \"orderDescription\": \"New Order\",\n    \"customerId\": 99,\n    \"itemsWithQtyMap\": {}\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8000/service3/orders",
+					"raw": "http://anand-sales-order-service.cfapps.io/service3/orders",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"anand-sales-order-service",
+						"cfapps",
+						"io"
 					],
-					"port": "8000",
 					"path": [
 						"service3",
 						"orders"
@@ -221,12 +227,13 @@
 					"raw": "{\n    \"orderDescription\": \"New Order\",\n    \"customerId\": 1,\n    \"itemsWithQtyMap\": {\n        \"Ball\": 2\n    }\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8000/service3/orders",
+					"raw": "http://anand-sales-order-service.cfapps.io/service3/orders",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"anand-sales-order-service",
+						"cfapps",
+						"io"
 					],
-					"port": "8000",
 					"path": [
 						"service3",
 						"orders"
@@ -252,12 +259,13 @@
 					"raw": "{\n    \"orderDescription\": \"Newest Order\",\n    \"orderDate\":\"2019-11-28\",\n    \"customerId\": 1,\n    \"itemsWithQtyMap\": {\n        \"Pen\": 1,\n        \"Book\": 2\n    }\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8000/service3/orders",
+					"raw": "http://anand-sales-order-service.cfapps.io/service3/orders",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"anand-sales-order-service",
+						"cfapps",
+						"io"
 					],
-					"port": "8000",
 					"path": [
 						"service3",
 						"orders"
@@ -283,12 +291,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8000/actuator/refresh",
+					"raw": "http://anand-sales-order-service.cfapps.io/actuator/refresh",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"anand-sales-order-service",
+						"cfapps",
+						"io"
 					],
-					"port": "8000",
 					"path": [
 						"actuator",
 						"refresh"

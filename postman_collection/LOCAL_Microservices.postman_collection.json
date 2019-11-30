@@ -1,0 +1,302 @@
+{
+	"info": {
+		"_postman_id": "2beb6931-8d5d-4e7c-8fe7-a72409a530a1",
+		"name": "Microservices - Local",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "customer-service || /customers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[]"
+				},
+				"url": {
+					"raw": "http://localhost:8100/service1/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8100",
+					"path": [
+						"service1",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "customer-service || /customer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 3,\n    \"email\": \"brad@gmail.com\",\n    \"firstName\": \"Brad\",\n    \"lastName\": \"Pitt\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8100/service1/customer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8100",
+					"path": [
+						"service1",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "customer-service || /fault",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[]"
+				},
+				"url": {
+					"raw": "http://localhost:8100/service1/fault",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8100",
+					"path": [
+						"service1",
+						"fault"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "item-service || /items",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[]"
+				},
+				"url": {
+					"raw": "http://localhost:8200/service2/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8200",
+					"path": [
+						"service2",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "item-service || /items/{itemname}",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[]"
+				},
+				"url": {
+					"raw": "http://localhost:8200/service2/items/Pen",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8200",
+					"path": [
+						"service2",
+						"items",
+						"Pen"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sales-order-service || Invalid Customer Id",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"orderDescription\": \"New Order\",\n    \"customerId\": 99,\n    \"itemsWithQtyMap\": {}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/service3/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"service3",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sales-order-service || Invalid Item Name",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"orderDescription\": \"New Order\",\n    \"customerId\": 1,\n    \"itemsWithQtyMap\": {\n        \"Ball\": 2\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/service3/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"service3",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sales-order-service || Valid Order",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"orderDescription\": \"Newest Order\",\n    \"orderDate\":\"2019-11-28\",\n    \"customerId\": 1,\n    \"itemsWithQtyMap\": {\n        \"Pen\": 1,\n        \"Book\": 2\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/service3/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"service3",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sales-order-service || /refresh",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8000/actuator/refresh",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"actuator",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

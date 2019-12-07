@@ -3,11 +3,27 @@ package com.retail.services.salesorderservice.model;
 import java.util.Date;
 import java.util.Map;
 
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Order {
 
+	@NotNull(message = "Order Description is required")
+	@NotBlank(message = "Order Description cannot be empty")
 	private String orderDescription;
+
+	@NotNull(message = "Order Date is required")
+	@DateTimeFormat(pattern="mm/dd/yyyy")
+	@Future(message = "Order Date needs to be in the future")
 	private Date orderDate;
+
+	@NotNull(message = "Customer Id is required")
 	private Long customerId;
+
+	@NotNull(message = "List of items with their quantity is required")
 	private Map<String, Long> itemsWithQtyMap;
 
 	public Order() {

@@ -22,12 +22,15 @@ import com.retail.services.salesorderservice.model.Order;
 import com.retail.services.salesorderservice.repos.CustomerRepository;
 import com.retail.services.salesorderservice.repos.OrderLineItemRepository;
 
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping(&quot;/service3&quot;)
 @RefreshScope
-<span class="fc" id="L28">public class SalesOrderController {</span>
+<span class="fc" id="L31">public class SalesOrderController {</span>
 
-<span class="fc" id="L30">	private static final Logger log = LoggerFactory.getLogger(SalesOrderController.class);</span>
+<span class="fc" id="L33">	private static final Logger log = LoggerFactory.getLogger(SalesOrderController.class);</span>
 
 	@Value(&quot;${app.custom.message}&quot;)
 	String message;
@@ -52,25 +55,26 @@ import com.retail.services.salesorderservice.repos.OrderLineItemRepository;
 	 */
 	@PostMapping(&quot;/orders&quot;)
 	@HystrixCommand(fallbackMethod = &quot;handlefailedOrder&quot;)
+	@ApiResponses(value = { @ApiResponse(code = 400, message = &quot;Invalid request format&quot;) })
 	public String createOrder(@Valid @RequestBody Order orderRequest) {
 		
-<span class="fc" id="L57">		log.info(message);</span>
+<span class="fc" id="L61">		log.info(message);</span>
 
 		// Validating Customer by verifying the table &quot;Customer_SOS&quot; with &quot;cust_id&quot;
-<span class="fc bfc" id="L60" title="All 2 branches covered.">		if (!customerRepository.existsById(orderRequest.getCustomerId())) {</span>
-<span class="fc" id="L61">			log.info(&quot;Invalid Customer.&quot;);</span>
-<span class="fc" id="L62">			return (SINGLE_QUOTE + orderRequest.getCustomerId() + SINGLE_QUOTE + MSG_INVALID_CUST_ID);</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">		if (!customerRepository.existsById(orderRequest.getCustomerId())) {</span>
+<span class="fc" id="L65">			log.info(&quot;Invalid Customer.&quot;);</span>
+<span class="fc" id="L66">			return (SINGLE_QUOTE + orderRequest.getCustomerId() + SINGLE_QUOTE + MSG_INVALID_CUST_ID);</span>
 		}
 
 		// Validating Items by verifying the table &quot;Item&quot; with &quot;item_name&quot;
-<span class="fc bfc" id="L66" title="All 2 branches covered.">		for (String itemName : orderRequest.getItemsWithQtyMap().keySet()) {</span>
-<span class="fc bfc" id="L67" title="All 2 branches covered.">			if (!isItemValid(itemName)) {</span>
-<span class="fc" id="L68">				log.info(&quot;Invalid Item.&quot;);</span>
-<span class="fc" id="L69">				return (SINGLE_QUOTE + itemName + SINGLE_QUOTE + MSG_INVALID_ITEM);</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">		for (String itemName : orderRequest.getItemsWithQtyMap().keySet()) {</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">			if (!isItemValid(itemName)) {</span>
+<span class="fc" id="L72">				log.info(&quot;Invalid Item.&quot;);</span>
+<span class="fc" id="L73">				return (SINGLE_QUOTE + itemName + SINGLE_QUOTE + MSG_INVALID_ITEM);</span>
 			}
-<span class="fc" id="L71">		}</span>
+<span class="fc" id="L75">		}</span>
 		// Create sales order and return the order id
-<span class="fc" id="L73">		return salesOrderService.createOrder(orderRequest);</span>
+<span class="fc" id="L77">		return salesOrderService.createOrder(orderRequest);</span>
 	}
 	
 	/**
@@ -81,17 +85,17 @@ import com.retail.services.salesorderservice.repos.OrderLineItemRepository;
 	 * @return Boolean
 	 */
 	public Boolean isItemValid(String itemName) {
-<span class="fc" id="L84">		log.info(&quot;Checking if '&quot; + itemName + &quot;' is valid...&quot;);</span>
+<span class="fc" id="L88">		log.info(&quot;Checking if '&quot; + itemName + &quot;' is valid...&quot;);</span>
 		try {
-<span class="fc bfc" id="L86" title="All 2 branches covered.">			if (itemService.getItemByName(itemName) != null) {</span>
-<span class="fc" id="L87">				log.info(itemName + &quot; is valid.&quot;);</span>
-<span class="fc" id="L88">				return Boolean.TRUE;</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">			if (itemService.getItemByName(itemName) != null) {</span>
+<span class="fc" id="L91">				log.info(itemName + &quot; is valid.&quot;);</span>
+<span class="fc" id="L92">				return Boolean.TRUE;</span>
 			}
-<span class="fc" id="L90">		} catch (Exception e) {</span>
-<span class="fc" id="L91">			log.error(e.getMessage());</span>
-<span class="fc" id="L92">			throw e;</span>
-<span class="fc" id="L93">		}</span>
-<span class="fc" id="L94">		return Boolean.FALSE;</span>
+<span class="fc" id="L94">		} catch (Exception e) {</span>
+<span class="fc" id="L95">			log.error(e.getMessage());</span>
+<span class="fc" id="L96">			throw e;</span>
+<span class="fc" id="L97">		}</span>
+<span class="fc" id="L98">		return Boolean.FALSE;</span>
 	}
 	
 	/**
@@ -101,7 +105,7 @@ import com.retail.services.salesorderservice.repos.OrderLineItemRepository;
 	 */
 
 	public String handlefailedOrder(Order orderRequest) {
-<span class="fc" id="L104">		return MSG_ORDER_FAILED;</span>
+<span class="fc" id="L108">		return MSG_ORDER_FAILED;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

@@ -22,6 +22,9 @@ import com.retail.services.salesorderservice.model.Order;
 import com.retail.services.salesorderservice.repos.CustomerRepository;
 import com.retail.services.salesorderservice.repos.OrderLineItemRepository;
 
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping("/service3")
 @RefreshScope
@@ -52,6 +55,7 @@ public class SalesOrderController {
 	 */
 	@PostMapping("/orders")
 	@HystrixCommand(fallbackMethod = "handlefailedOrder")
+	@ApiResponses(value = { @ApiResponse(code = 400, message = "Invalid request format") })
 	public String createOrder(@Valid @RequestBody Order orderRequest) {
 		
 		log.info(message);

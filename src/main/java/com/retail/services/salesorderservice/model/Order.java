@@ -5,25 +5,35 @@ import java.util.Map;
 
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel
 public class Order {
 
+	@ApiModelProperty(example="New Order")
 	@NotNull(message = "Order Description is required")
 	@NotBlank(message = "Order Description cannot be empty")
 	private String orderDescription;
 
+	@ApiModelProperty(example="2020-12-31")
 	@NotNull(message = "Order Date is required")
-	@DateTimeFormat(pattern="mm/dd/yyyy")
+	@DateTimeFormat(pattern="yyyy-mm-dd")
 	@Future(message = "Order Date needs to be in the future")
 	private Date orderDate;
 
+	@ApiModelProperty(example="1")
 	@NotNull(message = "Customer Id is required")
 	private Long customerId;
 
+	@ApiModelProperty(example="{\"Pen\": 1,\"Book\": 2}")
 	@NotNull(message = "List of items with their quantity is required")
+	@NotEmpty(message = "List of items with their quantity cannot be empty")
 	private Map<String, Long> itemsWithQtyMap;
 
 	public Order() {

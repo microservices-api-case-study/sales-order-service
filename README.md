@@ -6,7 +6,7 @@
 
 This is a retail sales store case study which involves 3 microservices and they are implemented in Spring Boot. Spring Validation is performed for all the input fields. The services are deployed to Pivotal Cloud Foundry. They are enabled with Swagger UI for API testing.
 
-### Customer Service
+### [Customer Service](customer-service-core.md)
 
 1. Creates customer with the given details and triggers an event "customer.created" which is subscribed by Sales Order Service
 2. Returns all the existing customers with their details
@@ -15,7 +15,7 @@ Table:
 
 1. Customer – id, email, first\_name, last\_name 
 
-### Item Service
+### [Item Service](item-service-core.md)
 
 1. Returns existing item details if the item name is sent as an input
 2. Returns all the existing items with their details
@@ -24,7 +24,7 @@ Table:
 
 1. Item – id, name, description, price 
 
-### Sales Order Service
+### [Sales Order Service](sales-order-service-composite.md)
 
 1. Subscribes the event "customer.created" and stores the received customer details in its own table named “Customer\_SOS”
 2. Creates an order and returns the order id

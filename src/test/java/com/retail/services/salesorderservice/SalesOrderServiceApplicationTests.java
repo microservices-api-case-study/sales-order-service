@@ -3,7 +3,7 @@ package com.retail.services.salesorderservice;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,7 +50,7 @@ class SalesOrderServiceApplicationTests {
 
 		Order orderRequest = new Order();
 		orderRequest.setCustomerId(1L);
-		orderRequest.setOrderDate(new Date());
+		orderRequest.setOrderDate(java.sql.Date.valueOf(LocalDate.now().plusDays(1L)));
 		orderRequest.setOrderDescription("New Order");
 		Map<String, Long> itemsWithQtyMap = new HashMap<String, Long>();
 		itemsWithQtyMap.put("Pen", 1L);
@@ -70,7 +70,7 @@ class SalesOrderServiceApplicationTests {
 
 		Order orderRequest = new Order();
 		orderRequest.setCustomerId(4L);
-		orderRequest.setOrderDate(new Date());
+		orderRequest.setOrderDate(java.sql.Date.valueOf(LocalDate.now().plusDays(1L)));
 		orderRequest.setOrderDescription("New Order");
 		Map<String, Long> itemsWithQtyMap = new HashMap<String, Long>();
 		itemsWithQtyMap.put("Pen", 1L);
@@ -92,7 +92,7 @@ class SalesOrderServiceApplicationTests {
 
 		Order orderRequest = new Order();
 		orderRequest.setCustomerId(1L);
-		orderRequest.setOrderDate(new Date());
+		orderRequest.setOrderDate(java.sql.Date.valueOf(LocalDate.now().plusDays(1L)));
 		orderRequest.setOrderDescription("New Order");
 		Map<String, Long> itemsWithQtyMap = new HashMap<String, Long>();
 		itemsWithQtyMap.put("Ball", 1L);
@@ -113,7 +113,7 @@ class SalesOrderServiceApplicationTests {
 
 		Order orderRequest = new Order();
 		orderRequest.setCustomerId(1L);
-		orderRequest.setOrderDate(new Date());
+		orderRequest.setOrderDate(java.sql.Date.valueOf(LocalDate.now().plusDays(1L)));
 		orderRequest.setOrderDescription("New Order");
 		Map<String, Long> itemsWithQtyMap = new HashMap<String, Long>();
 		itemsWithQtyMap.put("Pen", 1L);

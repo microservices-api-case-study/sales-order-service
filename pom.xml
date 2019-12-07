@@ -153,6 +153,8 @@
 				<configuration>
 					<excludes>
 						<exclude>**/*Application.*</exclude>
+						<exclude>**/*Error.*</exclude>
+						<exclude>**/*Exception*.*</exclude>
 						<exclude>**/*model/*</exclude>
 						<exclude>**/*mq/*</exclude>
 						<exclude>**/*util/*</exclude>
@@ -184,6 +186,8 @@
 									<element>CLASS</element>
 									<excludes>
 										<exclude>**/*Application.*</exclude>
+										<exclude>**/*Error.*</exclude>
+										<exclude>**/*Exception*.*</exclude>
 										<exclude>**/*model/*</exclude>
 										<exclude>**/*mq/*</exclude>
 										<exclude>**/*util/*</exclude>

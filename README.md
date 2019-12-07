@@ -1,23 +1,43 @@
-# Sales Order Service (Composite)
+# Overview
 
-## Operations
+## Case Study
 
-1. Sales order customer – event subscription
-	a. When a “CustomerCreated” event is published, sales order service needs to subscribe to it. Fetch the customer details(customer id, email, first name and last name) and insert it into the local customer table.
+![Service Interactions and Control Flow](.gitbook/assets/overall-service-flow.svg)
 
-	Table: Customer_SOS (cust_id, cust_first_name, cust_last_name, cust_email)
+This is a retail sales store case study which involves 3 microservices and they are implemented in Spring Boot. Spring Validation is performed for all the input fields. The services are deployed to Pivotal Cloud Foundry. They are enabled with Swagger UI for API testing.
 
-2. Create Order – create an order and return an order id
-	Post url: http://port/service3/orders
+### Customer Service
 
-	Input: Order Description, Order Date, customer id, list of item names
-	Output: Order Id
+1. Creates customer with the given details and triggers an event "customer.created" which is subscribed by Sales Order Service
+2. Returns all the existing customers with their details
 
-	a. validate customer by verifying the table “customer_sos” with cust_id.
-	b. validate items by calling item service with item name
-	c. create order by inserting the order details in order table and items for the order details in the order_line_item table.
+Table:
 
-	Table: 
-	1. sales_order – id, order_date, cust_id, order_desc, total_price
-	2. order_line_item – id, item_name, item_quantity, order_id
+1. Customer – id, email, first\_name, last\_name 
+
+### Item Service
+
+1. Returns existing item details if the item name is sent as an input
+2. Returns all the existing items with their details
+
+Table:
+
+1. Item – id, name, description, price 
+
+### Sales Order Service
+
+1. Subscribes the event "customer.created" and stores the received customer details in its own table named “Customer\_SOS”
+2. Creates an order and returns the order id
+   1. Validates customer by verifying the table “Customer\_SOS” with cust\_id
+   2. Validates items by calling item service with item name
+   3. Creates the order by inserting the order details in "sales\_order" table, and items of the order are stored in the "order\_line\_item" table
+
+Input: Order Description, Order Date, customer id, list of item names
+
+Tables:
+
+1. sales\_order – id, order\_date, cust\_id, order\_desc, total\_price
+2. order\_line\_item – id, item\_name, item\_quantity, order\_id
+
+
 
